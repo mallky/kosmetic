@@ -1,0 +1,16 @@
+{
+  "name": "rr-ts-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "awesome-typescript-loader": "3.2.3",
+    "typescript": "2.5.3",
+    "webpack": "3.7.1"
+  }
+}
