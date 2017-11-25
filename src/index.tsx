@@ -16,13 +16,11 @@ const App = ({title}: IAppProps) => <div>
     <Simple
         customProperty="Simple field component"
         placeholder="type some text..."
-        onFocus={() => console.log('is focused!')}
-    />
+        onFocus={() => console.log('is focused!')}/>
 
     <Counter
         title="High Order Component"
-        increment={5}
-    />
+        increment={5}/>
 </div>;
 
 ReactDOM.render(

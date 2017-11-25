@@ -17,8 +17,6 @@ function withCount<OriginProps>(Component: React.ComponentType<OriginProps & Inj
     type ResultProps = OriginProps & ExternalProps;
 
     return class extends React.Component<ResultProps, State> {
-        static displayName = `WithCount(${Component.displayName || Component.name})`;
-
         state: State = {
             count: 0
         }
@@ -32,10 +30,7 @@ function withCount<OriginProps>(Component: React.ComponentType<OriginProps & Inj
             return (
                 <div>
                     <Component {...this.props} {...this.state} />
-                    <button
-                        type="button"
-                        onClick={this.increment}
-                    > + </button>
+                    <button type="button" onClick={this.increment}> + </button>
                 </div>
             )
         }
