@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const env = process.env.NODE_ENV;
 const __DEV__ = env === 'development';
@@ -35,6 +36,16 @@ const config = {
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader'
+            },
+            {
+                test: /\.less$/,
+                use: [{
+                    loader: "style-loader" // creates style nodes from JS strings 
+                }, {
+                    loader: "css-loader" // translates CSS into CommonJS 
+                }, {
+                    loader: "less-loader" // compiles Less to CSS 
+                }]
             }
         ]
     },
@@ -49,7 +60,12 @@ const config = {
         new HtmlWebpackPlugin({
             template: './index.html'
         }),
-        new webpack.optimize.ModuleConcatenationPlugin()
+        new webpack.optimize.ModuleConcatenationPlugin(),
+        new ExtractTextPlugin({
+            filename: 'style-[contenthash].css',
+            disable: false,
+            allChunks: false, // true
+        })
     ]
 };
 
