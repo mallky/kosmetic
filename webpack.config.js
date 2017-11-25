@@ -1,3 +1,5 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -19,7 +21,7 @@ const config = {
     },
 
     resolve: {
-        extensions: ['.ts']
+        extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
 
     devtool: 'inline-source-map',
@@ -27,11 +29,18 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.ts$/,
+                test: /\.tsx$/,
                 loader: 'awesome-typescript-loader'
             }
         ]
-    }
+    },
+
+    plugins: [
+        new CleanWebpackPlugin(['dist']),
+        new HtmlWebpackPlugin({
+            template: './index.html'
+        })
+    ]
 };
 
 module.exports = config;
