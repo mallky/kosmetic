@@ -1,29 +1,20 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Simple from './simple';
-import withCount from './hoc/withCount';
-import DisplayCount from './hoc/DisplayCount';
+import { Provider } from 'react-redux';
+import configureStore from './store';
+import Field from './components/Field';
+import TabList from './components/TabList';
 
-const Counter = withCount(DisplayCount);
+const store = configureStore();
 
-interface IAppProps {
-    title: string;
-}
-
-const App = ({title}: IAppProps) => <div>
-    <h1>{title}</h1>
-
-    <Simple
-        customProperty="Simple field component"
-        placeholder="type some text..."
-        onFocus={() => console.log('is focused!')}/>
-
-    <Counter
-        title="High Order Component"
-        increment={5}/>
-</div>;
-
-ReactDOM.render(
-    <App title="Hello, React!" />,
-    document.getElementById('root')
+const App = () => (
+    <Provider store={store}>
+        <div>
+            <h1>Hello, Redux!</h1>
+            <Field placeholder='I like dev tools!' />
+            <TabList />
+        </div>
+    </Provider>
 );
+
+ReactDOM.render(<App />, document.getElementById('root'));

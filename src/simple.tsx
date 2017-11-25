@@ -1,15 +1,10 @@
 import * as React from 'react';
 
-/**
- * Описываем доступные свойства для компонента.
- * Наследование от дженерика React.HTMLProps позволяет не писать руками
- * все стандартные атрибуты для поля ввода.
- */
 interface Props extends React.HTMLProps<HTMLInputElement> {
     customProperty: string;
 }
 
-// Описываем состояние компонента
+
 interface State {
     value: string;
 }
