@@ -9,7 +9,7 @@ interface MainProps {
 export default class Main extends React.Component<MainProps, {}> {
   render() {
     return (
-      <div id="main">MAIN</div>
+      <main id="main">MAIN</main>
     );
   }
 }

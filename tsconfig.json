@@ -9,6 +9,18 @@
     "target": "es5",
     "module": "esnext",
     "jsx": "react",
-    "moduleResolution": "node"
-  }
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "allowJs": false,
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test",
+    "example"
+  ]
 }
