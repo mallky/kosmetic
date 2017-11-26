@@ -3,7 +3,12 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractLess = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "development"
+});
 
 const env = process.env.NODE_ENV;
 const __DEV__ = env === 'development';
@@ -39,13 +44,15 @@ const config = {
             },
             {
                 test: /\.less$/,
-                use: [{
-                    loader: "style-loader" // creates style nodes from JS strings 
-                }, {
-                    loader: "css-loader" // translates CSS into CommonJS 
-                }, {
-                    loader: "less-loader" // compiles Less to CSS 
-                }]
+                use: extractLess.extract({
+                    use: [{
+                        loader: "css-loader"
+                    }, {
+                        loader: "less-loader"
+                    }],
+                    // use style-loader in development
+                    fallback: "style-loader"
+                })
             }
         ]
     },
@@ -61,11 +68,7 @@ const config = {
             template: './index.html'
         }),
         new webpack.optimize.ModuleConcatenationPlugin(),
-        new ExtractTextPlugin({
-            filename: 'style-[contenthash].css',
-            disable: false,
-            allChunks: false, // true
-        })
+        extractLess
     ]
 };
 
