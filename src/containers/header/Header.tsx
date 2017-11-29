@@ -8,7 +8,7 @@ import Button from './../../components/button/Button';
 import { setSection } from '../../redux/application';
 import { IStore } from './../../store';
 
-import nails from 'nails.jpg';
+import nails from './nails.jpg';
 
 interface HeaderProps extends DispatchProp<IStore>, React.HTMLProps<HTMLAllCollection> {
     section?: string;
@@ -38,7 +38,9 @@ class Header extends React.Component<HeaderProps, {}> {
     render() {
         return (
             <header>
-                <img src={nails} alt="nails"/>
+                <div>
+                    <img src={nails} alt="nails"/>
+                </div>
                 {this.renderTabList()}
             </header>
         );
