@@ -57,13 +57,12 @@ const config = {
                 })
             },
             {
-                test: /\.(png|jpg|gif)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {}
-                    }
-                ]
+                test: /\.(png|jpg|jpeg|gif|svg)$/,
+                loader: 'url-loader',
+                query: {
+                    limit: BINARY_FILE_MAX_SIZE,
+                    name: 'images/[name].[ext]'
+                }
             }
         ]
     },
