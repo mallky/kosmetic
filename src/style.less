@@ -1,4 +1,16 @@
+@import './styles/variables.less';
+
+*:focus, *:active {
+    outline: none;
+}
+
+#app {
+    box-sizing: border-box;
+}
+
 #root {
     margin: 0 auto;
     width: 1024px;
+    background: @bg-color;
+    border-radius: @border-radius;
 }

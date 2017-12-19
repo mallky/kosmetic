@@ -4,7 +4,7 @@ import * as React from 'react';
 
 interface ButtonProps {
     type?: string;
-    children?: string;
+    children?: any;
     onClick?: (e: any) => void;
 }
 

@@ -4,51 +4,75 @@ import * as React from 'react';
 import { connect, Dispatch, DispatchProp } from 'react-redux';
 
 import Button from './../../components/button/Button';
+import * as constants from '../../utils/constants';
 
-import { setSection } from '../../redux/application';
+import { setSection, setId } from '../../redux/application';
 import { IStore } from './../../store';
 
-const nails = require('./nails.jpg');
-
 interface HeaderProps extends DispatchProp<IStore>, React.HTMLProps<HTMLAllCollection> {
-    section?: string;
+  section?: string;
+  idForScroll?: string;
 }
 
-const TAB_LIST = ['главная', 'услуги и цены', 'обучение', 'магазин', 'галерея работ', 'контакты'];
-
 class Header extends React.Component<HeaderProps, {}> {
-    handlerClick(event: any): void {
-        const { dispatch } = this.props;
-        const value = event.target.textContent;
+  componentWillReceiveProps(nextProps) {
+    const elem = document.getElementById(nextProps.idForScroll);
+    const top = elem.getBoundingClientRect().top - window.pageYOffset;
+    let start = 0;
 
-        dispatch(setSection(value));
-    }
+    const scroll = setInterval(() => {
+      if (start >= top) {
+        clearInterval(scroll);
+      } else {
+        start += 25;
+        window.scroll(0, start);
+      }
+    }, 10);
+  }
+
+  handlerClick(event: any): void {
+    const { dispatch } = this.props;
+    const value = event.target.textContent;
     
-    renderTabList(): Array<any> {
-        return TAB_LIST.map((list) => {
-            return <Button
-              key={list}
-              type='default'
-              onClick={this.handlerClick.bind(this)}>
-                {list}
-            </Button>;
-        });
-    }
+    dispatch(setSection(value));
+  }
+
+  scroll(e: any): void {
+    e.preventDefault();
+    const { dispatch } = this.props;
+    const idForScroll = e.target.getAttribute('href').substring(1);
+
+    dispatch(setId(idForScroll));
+  }
     
-    render() {
-        return (
-            <header>
-                <div>
-                    <img src={String(nails)} alt="nails"/>
-                </div>
-                {this.renderTabList()}
-            </header>
-        );
-    }
+  renderTabList(): Array<any> {
+    return constants.tabList.map((list, index) => {
+      return <Button
+        key={list}
+        type='link'
+        onClick={this.handlerClick.bind(this)}>
+        <a href={`#${constants.num[index]}`} onClick={this.scroll.bind(this)}>{list}</a>
+      </Button>;
+    });
+  }
+    
+  render() {
+    return (
+      <header>
+        <div>
+
+        </div>
+        <div className="tab-list">
+          {this.renderTabList()}
+        </div>
+      </header>
+    );
+  }
 }
 
 const mapStateToProps = (state: IStore, ownProps: HeaderProps) => ({
-    section: state.application.section
+  section: state.application.section,
+  idForScroll: state.application.idForScroll
 });
 
 export default connect<{}, {}, HeaderProps>(mapStateToProps)(Header);

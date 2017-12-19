@@ -1,17 +1,43 @@
+@import "../../styles/variables";
+
 button {
+  width: 150px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: @border-radius;
+
   &.default {
-    width: 150px;
-    height: 40px;
-    font-size: 18px;
-    background: white;
-    border: 1px solid gray;
-    cursor: pointer;
+    background: @main-white;
+    border: 2px solid @main-gray;
 
     &:hover {
-      background: black;
-      color: white;
+      background: @main-black;
+      color: @main-white;
     }
   }
 
+  &.link {
+    background: @main-white;
+    box-shadow: @box-shadow;
+    color: @full-black;
+
+    &:hover {
+      box-shadow: inset @box-shadow;
+      color: #b2b2b2;
+    }
+  }
+
+  &.inverse {
+    background: @main-black;
+    color: @main-white;
+    border: 2px solid @full-black;
+
+    &:hover {
+      background: @main-white;
+      color: @main-black;
+    }
+  }
 
 }

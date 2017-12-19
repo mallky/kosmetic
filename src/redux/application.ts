@@ -3,10 +3,12 @@
  */
 export interface ApplicationState {
     section: string;
+    idForScroll: string;
 }
 
 const initialState: ApplicationState = {
-    section: ''
+    section: '',
+    idForScroll: ''
 };
 
 /**
@@ -14,6 +16,9 @@ const initialState: ApplicationState = {
  */
 const SET_SECTION = 'application/SET_SECTION';
 type SET_SECTION = typeof SET_SECTION;
+
+const SET_ID = 'application/SET_ID';
+type SET_ID = typeof SET_ID;
 
 /**
  * Actions
@@ -23,8 +28,12 @@ export interface SetAction {
     section: string;
 }
 
-type ApplicationAction = SetAction;
+export interface SetId {
+    type: SET_ID;
+    idForScroll: string;
+}
 
+type ApplicationAction = SetId | SetAction;
 /**
  * Reducer
  */
@@ -35,6 +44,11 @@ export default function reducer(state: ApplicationState = initialState, action: 
                 ...state,
                 section: action.section
             };
+        case SET_ID:
+            return {
+                ...state,
+                idForScroll: action.idForScroll
+            };
         default:
             return state;
     }
@@ -43,7 +57,12 @@ export default function reducer(state: ApplicationState = initialState, action: 
 /**
  * Action Creators
  */
-export const setSection= (section: string): SetAction => ({
+export const setSection = (section: string): SetAction => ({
     type: SET_SECTION,
     section
+});
+
+export const setId = (idForScroll: string): SetId => ({
+    type: SET_ID,
+    idForScroll
 });

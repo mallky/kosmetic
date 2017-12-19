@@ -1,12 +1,22 @@
+@import '../../styles/variables.less';
+
 header {
   min-height: 100px;
+  background: @main-white;
+  box-shadow: @box-shadow;
+  border-radius: @border-radius;
 
-  button:not(:last-child) {
-    border-right: none;
+  .tab-list {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      margin: 10px;
+    }
   }
 
   div:first-child {
-    display: inline-block;
+    display: block;
 
     img {
       height: 100px;
