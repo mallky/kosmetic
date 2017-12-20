@@ -7,16 +7,17 @@ import configureStore from './store';
 import Header from './containers/header/Header';
 import Main from './containers/main/Main';
 import Footer from './containers/footer/Footer';
+import Page from './containers/page/Page';
 
 const store = configureStore();
 
 const App = () => (
     <Provider store={store}>
-      <div id="root">
+      <Page>
         <Header/>
         <Main/>
         <Footer/>
-      </div>
+      </Page>
     </Provider>
 );
 

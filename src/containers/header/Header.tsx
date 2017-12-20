@@ -17,23 +17,26 @@ interface HeaderProps extends DispatchProp<IStore>, React.HTMLProps<HTMLAllColle
 class Header extends React.Component<HeaderProps, {}> {
   componentWillReceiveProps(nextProps) {
     const elem = document.getElementById(nextProps.idForScroll);
-    const top = elem.getBoundingClientRect().top - window.pageYOffset;
-    let start = 0;
 
-    const scroll = setInterval(() => {
-      if (start >= top) {
-        clearInterval(scroll);
-      } else {
-        start += 25;
-        window.scroll(0, start);
-      }
-    }, 10);
+    if (elem) {
+      const top = elem.getBoundingClientRect().top;
+      let start = 0;
+
+      const scroll = setInterval(() => {
+        if (start === top) {
+          clearInterval(scroll);
+        } else {
+          start = start > top ? top : start + 15;
+          window.scroll(0, start);
+        }
+      }, 10);
+    }
   }
 
   handlerClick(event: any): void {
     const { dispatch } = this.props;
     const value = event.target.textContent;
-    
+
     dispatch(setSection(value));
   }
 
