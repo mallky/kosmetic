@@ -19,14 +19,14 @@ class Header extends React.Component<HeaderProps, {}> {
     const elem = document.getElementById(nextProps.idForScroll);
 
     if (elem) {
-      const top = elem.getBoundingClientRect().top;
+      const top = elem.getBoundingClientRect().top - window.pageYOffset;
       let start = 0;
 
       const scroll = setInterval(() => {
         if (start === top) {
           clearInterval(scroll);
         } else {
-          start = start > top ? top : start + 15;
+          start = start > top ? top : start + top / 20;
           window.scroll(0, start);
         }
       }, 10);
