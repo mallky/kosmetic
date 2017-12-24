@@ -5,6 +5,7 @@ import { connect, Dispatch, DispatchProp } from 'react-redux';
 
 import Button from './../../components/button/Button';
 import * as constants from '../../utils/constants';
+import { scrollFunc } from '../../utils/functions';
 
 import { setSection, setId } from '../../redux/application';
 import { IStore } from './../../store';
@@ -22,14 +23,7 @@ class Header extends React.Component<HeaderProps, {}> {
       const top = elem.getBoundingClientRect().top - window.pageYOffset;
       let start = 0;
 
-      const scroll = setInterval(() => {
-        if (start === top) {
-          clearInterval(scroll);
-        } else {
-          start = start > top ? top : start + top / 20;
-          window.scroll(0, start);
-        }
-      }, 10);
+      scrollFunc(start, top);
     }
   }
 
