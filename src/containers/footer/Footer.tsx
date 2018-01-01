@@ -24,8 +24,15 @@ export default class Footer extends React.Component<FooterProps, {}> {
           class="footer-btn-to-top"
           type="only-inner"
           onClick={this.toTop.bind(this)}>
-          <i className="fas fa-angle-up"/>
+          <i className="fa fa-angle-up"/>
         </Button>
+
+          <i className="fa fa-vk fa-spin"/>
+          <i className="fa fa-twitter"/>
+          <i className="fa fa-camera-retro"/>
+          <i className="fa fa-bomb"/>
+          <i className="fa fa-bomb"/>
+
       </div>
     );
   }

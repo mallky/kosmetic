@@ -33,7 +33,7 @@ export default class Main extends React.Component<MainProps, {}> {
           class="footer-btn-to-top"
           type="only-inner"
           onClick={this.toTop.bind(this)}>
-          <i className="fas fa-angle-up"/>
+          <i className="fa fa-angle-up"/>
         </Button>
       </Wrapper>
     });

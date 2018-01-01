@@ -63,6 +63,17 @@ const config = {
                     limit: BINARY_FILE_MAX_SIZE,
                     name: 'images/[name].[ext]'
                 }
+            },
+            // Fonts
+            {
+                test: /\.(woff|woff2|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+                loaders: [{
+                    loader: 'url-loader',
+                    query: {
+                        limit: BINARY_FILE_MAX_SIZE,
+                        name: 'styles/[name].[ext]?[hash]'
+                    }
+                }]
             }
         ]
     },
