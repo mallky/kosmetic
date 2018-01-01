@@ -3,9 +3,17 @@ import './Main.less';
 import * as React from 'react';
 
 import Wrapper from '../../components/Wrapper/Wrapper';
-import * as constants from '../../utils/constants';
 import Button from '../../components/button/Button';
+import Carousel from '../../components/Carousel/Carousel';
+
 import { scrollFunc } from '../../utils/functions';
+import * as constants from '../../utils/constants';
+
+const space1 = require('../../images/space1.jpg');
+const space2 = require('../../images/space2.jpg');
+const space3 = require('../../images/space3.jpg');
+const space4 = require('../../images/space4.jpg');
+const space5 = require('../../images/space5.jpg');
 
 interface MainProps {
 
@@ -13,9 +21,9 @@ interface MainProps {
 
 export default class Main extends React.Component<MainProps, {}> {
   toTop(e) {
-    const start = e.target.getBoundingClientRect().top;
+    const start = window.pageYOffset;
     const end = 0;
-    console.log(e.target);
+
     scrollFunc(start, end, -1);
   }
 
@@ -32,16 +40,22 @@ export default class Main extends React.Component<MainProps, {}> {
         <Button
           class="footer-btn-to-top"
           type="only-inner"
+          icon="fa-angle-up"
           onClick={this.toTop.bind(this)}>
-          <i className="fa fa-angle-up"/>
         </Button>
       </Wrapper>
     });
   }
 
   render() {
+    const images = [space1, space2, space3, space4, space5];
+    const texts = ['space1.jpg', 'space2.jpg', 'space3.jpg', 'space4.jpg', 'space6.jpg'];
+
     return (
       <main id="main">
+        <div id="carousel-main">
+          <Carousel images={images} texts={texts}/>
+        </div>
         {this._renderSections()}
       </main>
     );

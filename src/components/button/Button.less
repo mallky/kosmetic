@@ -57,11 +57,19 @@ button {
     background: transparent;
     border: none;
     border-radius: 0;
-    color: @main-black;
+    width: initial;
+    display: inline-block;
+
+    i {
+      color: @main-black;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
 
     &:hover {
-      background: @main-white;
-      color: gray;
+      i {
+        color: @main-hover-gray;
+      }
     }
   }
 }

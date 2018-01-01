@@ -11,7 +11,7 @@ interface WrapperProps {
 export default class Wrapper extends React.Component<WrapperProps, {}> {
   render() {
     return (
-      <div id={this.props.ident} className={`wrapper ${this.props.type}`}>{this.props.children}</div>
+      <div id={this.props.ident} className={`wrapper ${this.props.type || 'default'}`}>{this.props.children}</div>
     );
   }
 }

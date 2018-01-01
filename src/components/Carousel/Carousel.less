@@ -1,0 +1,56 @@
+@import "../../styles/variables";
+
+.carousel {
+  .flex();
+  margin: 0 60px;
+  position: relative;
+
+  .carousel-navigation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    .flex();
+    justify-content: space-between;
+  }
+
+  .image-box {
+    width: 500px;
+    height: auto;
+    .flex();
+    flex-direction: column;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    &.from-left-side {
+      animation: from-left-side-anim 2s ease-in-out;
+    }
+
+    &.from-right-side {
+      animation: from-right-side-anim 2s ease-in;
+    }
+
+    &.opacity-change {
+      animation: opacity-change-anim 2s ease-in-out;
+    }
+  }
+}
+@keyframes opacity-change-anim {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@keyframes from-left-side-anim {
+  0% {position: relative; left: -200px; opacity: 0}
+  50% {position: static; left: 200px}
+  100% {opacity: 1}
+}
+
+@keyframes from-right-side-anim {
+  0% {position: relative; left: 200px; opacity: 0}
+  50% {position: static; left: -200px}
+  100% {opacity: 1}
+}

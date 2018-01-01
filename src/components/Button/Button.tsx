@@ -7,6 +7,7 @@ interface ButtonProps {
     class?: string;
     children?: any;
     onClick?: (e: any) => void;
+    icon?: string;
 }
 
 export default class Button extends React.Component<ButtonProps, {}> {
@@ -15,7 +16,7 @@ export default class Button extends React.Component<ButtonProps, {}> {
             <button
               className={`${this.props.type || 'default'} ${this.props.class}`}
               onClick={this.props.onClick}>
-                {this.props.children}
+                {this.props.icon ? <i className={`fa ${this.props.icon}`}/> : this.props.children}
             </button>
         );
     }
