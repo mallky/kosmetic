@@ -1,8 +1,13 @@
 @import "../../styles/variables";
 
+@label-size: 15px;
+@label-border-hover: 5px solid black;
+@label-border-main: 3px solid black;
+
 .carousel {
   .flex();
   position: relative;
+  height: 455px;
   margin: 20px 60px;
 
   .carousel-navigation {
@@ -16,7 +21,7 @@
 
   .carousel-radio-box {
     position: absolute;
-    top: 102%;
+    top: 95%;
 
     .flex();
 
@@ -25,81 +30,80 @@
         opacity: 0;
 
         &:checked + label {
-          border: 8px solid black;
+          border: @label-border-hover;
         }
       }
 
       label {
         border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        border: 5px solid black;
+        width: @label-size;
+        height: @label-size;
+        border: @label-border-main;
         cursor: pointer;
         display: inline-block;
         background: white;
 
         &:hover {
-          border: 8px solid black;
+          border: @label-border-hover;
         }
       }
     }
   }
 
-  .image-box {
-    width: 500px;
-    height: auto;
-    .flex();
-    flex-direction: column;
+  .image-wrap-carousel {
+    padding: 20px;
+    box-shadow: @box-shadow;
+    background: white;
+    overflow: hidden;
 
-    img {
-      width: 100%;
-      height: 100%;
-    }
+    .image-box {
+      width: 500px;
+      height: 415px;
 
-    &.from-left-side {
-      animation: from-left-side-anim 2s ease-in-out;
-    }
+      .flex();
+      flex-direction: column;
 
-    &.from-right-side {
-      animation: from-right-side-anim 2s ease-in;
-    }
+      img {
+        width: 100%;
+        height: auto;
+      }
 
-    &.to-right-side-hide {
-      animation: to-right-side-hide-anim 2s ease-in;
-    }
+      &.from-left-side {
+        position: relative;
+        animation: from-left-side-anim 8s ease-in-out;
+      }
 
-    &.to-left-side-hide {
-      animation: to-left-side-hide-anim 2s ease-in;
-    }
+      &.from-right-side {
+        position: relative;
+        animation: from-right-side-anim 8s ease-in;
+      }
 
-    &.opacity-change {
-      animation: opacity-change-anim 2s ease-in-out;
+      &.opacity-change {
+        animation: opacity-change-anim 8s ease-in-out;
+      }
     }
   }
 }
+
 @keyframes opacity-change-anim {
-  0% {opacity: 0}
-  100% {opacity: 1}
+  0% {filter: blur(100px)}
+  20% {filter: blur(0px)}
+  80% {filter: blur(0px)}
+  100% {filter: blur(100px)}
 }
 
 @keyframes from-left-side-anim {
-  0% {position: relative; left: -200px; opacity: 0}
-  50% {position: static; left: 200px}
-  100% {opacity: 1}
+  0% {left: -500px; opacity: 0; filter: contrast(0%) blur(10px);;}
+  20% {left: 0; opacity: 1; filter: contrast(100%);}
+  50% {filter: blur(0px)}
+  80% {left: 0; opacity: 1; filter: contrast(100%);}
+  100% {left: 500px; opacity: 0;filter: contrast(0%) blur(10px);;}
 }
 
 @keyframes from-right-side-anim {
-  0% {position: relative; left: 200px; opacity: 0}
-  50% {position: static; left: -200px}
-  100% {opacity: 1}
-}
-
-@keyframes to-left-side-hide-anim {
-  0% {opacity: 1}
-  100% {position: relative; left: -200px; opacity: 0}
-}
-
-@keyframes to-right-side-hide-anim {
-  0% {opacity: 1}
-  100% {position: relative; left: -200px; opacity: 0}
+  0% {left: 500px; opacity: 0; filter: contrast(0%) blur(10px);}
+  20% {left: 0; opacity: 1; filter: contrast(100%);}
+  50% {filter: blur(0px)}
+  80% {left: 0; opacity: 1; filter: contrast(100%);}
+  100% {left: -500px; opacity: 0;filter: contrast(0%) blur(10px);}
 }
