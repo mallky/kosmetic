@@ -49,12 +49,11 @@ export default class Main extends React.Component<MainProps, {}> {
 
   render() {
     const images = [space1, space2, space3, space4, space5];
-    const texts = ['space1.jpg', 'space2.jpg', 'space3.jpg', 'space4.jpg', 'space6.jpg'];
 
     return (
       <main id="main">
         <div id="carousel-main">
-          <Carousel images={images} texts={texts}/>
+          <Carousel images={images}/>
         </div>
         {this._renderSections()}
       </main>

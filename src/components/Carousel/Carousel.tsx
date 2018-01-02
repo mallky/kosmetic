@@ -23,7 +23,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     this.state = {
       visibility: [],
       current: 0,
-      animType: 'from-left-side'
+      animType: animTypes[2],
     };
   }
 
@@ -31,6 +31,14 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
     this.setState({
       visibility: this.props.images.map((item, i) => !i)
     });
+
+    const timer = setInterval(() => {
+      this.setState((prevState, props) => ({
+        current: prevState.visibility.length - 1 !== prevState.current ? prevState.current + 1 : 0,
+        visibility: this.state.visibility.map((item, i) => i === prevState.current ? prevState.current + 1 : 0),
+        animType: animTypes[2]
+      }));
+    }, 6000);
   }
 
   _setState(current, animType) {
@@ -42,15 +50,21 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
   }
 
   _prev() {
-    const current = this.state.current === 0 ? this.props.images.length - 1 : this.state.current - 1;
+    const current: number = this.state.current === 0 ? this.props.images.length - 1 : this.state.current - 1;
 
     this._setState(current, animTypes[1]);
   }
 
   _next() {
-    const current = this.state.current === this.props.images.length - 1 ? 0 : this.state.current + 1;
+    const current: number = this.state.current === this.props.images.length - 1 ? 0 : this.state.current + 1;
 
     this._setState(current, animTypes[0]);
+  }
+
+  _onRadioChange(e: any) {
+    const currentVal: number = +e.target.value;
+
+    this._setState(currentVal, animTypes[2]);
   }
 
   _renderImages() {
@@ -61,8 +75,24 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
       </div>) : null;
     });
   }
-  
+
+  _renderRadioButtons(name) {
+    return this.props.images.map((image, i) => {
+      return <div key={i}>
+        <input
+          type="radio"
+          id={`${image}_${i}`}
+          name={name} value={i}
+          onChange={this._onRadioChange.bind(this)}
+          checked={this.state.current === i}/>
+        <label htmlFor={`${image}_${i}`}/>
+      </div>;
+    });
+  }
+
   render() {
+    const radioName: string = 'carousel-radio';
+
     return (
       <div className="carousel">
         <div className="carousel-navigation">
@@ -78,6 +108,9 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             onClick={this._next.bind(this)}/>
         </div>
         {this.props.images ? this._renderImages() : null}
+        <div className="carousel-radio-box">
+          {this._renderRadioButtons(radioName)}
+        </div>
       </div>
     );
   }
