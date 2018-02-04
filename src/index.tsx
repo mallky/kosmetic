@@ -13,11 +13,13 @@ const store = configureStore();
 
 const App = () => (
     <Provider store={store}>
-      <Page>
+      <div>
         <Header/>
-        <Main/>
+        <Page>
+          <Main/>
+        </Page>
         <Footer/>
-      </Page>
+      </div>
     </Provider>
 );
 

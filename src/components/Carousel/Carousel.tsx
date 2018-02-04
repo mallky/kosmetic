@@ -16,7 +16,7 @@ interface CarouselState {
 }
 
 export default class Carousel extends React.Component<CarouselProps, CarouselState> {
-  timer: number;
+  timer: any;
 
   constructor(props: CarouselProps) {
     super(props);

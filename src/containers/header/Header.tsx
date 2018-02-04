@@ -59,9 +59,9 @@ class Header extends React.Component<HeaderProps, {}> {
         <div>
 
         </div>
-        <div className="tab-list">
+        <nav className="tab-list">
           {this.renderTabList()}
-        </div>
+        </nav>
       </header>
     );
   }

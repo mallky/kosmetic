@@ -1,8 +1,8 @@
 @import "../../styles/variables";
 
-@label-size: 15px;
-@label-border-hover: 5px solid black;
-@label-border-main: 3px solid black;
+@label-size: 10px;
+@label-border-hover: 4px solid black;
+@label-border-main: 1px solid black;
 
 .carousel {
   .flex();
@@ -17,6 +17,18 @@
 
     .flex();
     justify-content: space-between;
+
+    button {
+      i {
+        color: white;
+      }
+
+      &:hover {
+        i {
+          color: #0000cc;
+        }
+      }
+    }
   }
 
   .carousel-radio-box {
@@ -35,7 +47,7 @@
       }
 
       label {
-        border-radius: 50%;
+        border-radius: 0;
         width: @label-size;
         height: @label-size;
         border: @label-border-main;
