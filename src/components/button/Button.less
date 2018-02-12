@@ -73,4 +73,28 @@ button {
       }
     }
   }
+
+  &.navigation {
+    border-radius: 0;
+    background: transparent;
+    border-bottom: 1px solid @main-gray;
+    border-top: none;
+    width: 160px;
+
+    & > a {
+      color: @opacity-black;
+
+      &:visited {
+        color: @opacity-black;
+      }
+    }
+
+    &:hover {
+      box-shadow: @box-shadow;
+    }
+  }
+
+  &:hover + .button-label {
+    color: @main-hover-gray;
+  }
 }

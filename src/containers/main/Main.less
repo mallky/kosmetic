@@ -4,14 +4,15 @@ main {
 
   .wrapper {
     display: inline-block;
-    width: 50%;
+    width: 100%;
 
-    &:nth-child(2n) {
-      align-self: flex-end;
-    }
-
-    &:nth-child(2n + 1) {
-      align-self: flex-start;
+    div {
+      img {
+        height: 400px;
+        width: auto;
+        margin: 20px;
+        float: left;
+      }
     }
   }
 }

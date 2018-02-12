@@ -1,4 +1,4 @@
-import './Header.less';
+import './Navigation.less';
 
 import * as React from 'react';
 import { connect, Dispatch, DispatchProp } from 'react-redux';
@@ -13,6 +13,7 @@ import { IStore } from './../../store';
 interface HeaderProps extends DispatchProp<IStore>, React.HTMLProps<HTMLAllCollection> {
   section?: string;
   idForScroll?: string;
+  toTop?: boolean;
 }
 
 class Header extends React.Component<HeaderProps, {}> {
@@ -20,10 +21,11 @@ class Header extends React.Component<HeaderProps, {}> {
     const elem = document.getElementById(nextProps.idForScroll);
 
     if (elem) {
-      const top = elem.getBoundingClientRect().top - window.pageYOffset;
-      let start = 0;
+      const start = this.props.toTop ? window.pageYOffset : 0;
+      const direction = this.props.toTop ? -1 : 1;
+      const top = elem.getBoundingClientRect().top - direction * window.pageYOffset;
 
-      scrollFunc(start, top);
+      scrollFunc(start, top, direction);
     }
   }
 
@@ -46,7 +48,7 @@ class Header extends React.Component<HeaderProps, {}> {
     return constants.tabList.map((list, index) => {
       return <Button
         key={list}
-        type='link'
+        type='navigation'
         onClick={this.handlerClick.bind(this)}>
         <a href={`#${constants.num[index]}`} onClick={this.scroll.bind(this)}>{list}</a>
       </Button>;
@@ -55,14 +57,11 @@ class Header extends React.Component<HeaderProps, {}> {
     
   render() {
     return (
-      <header>
-        <div>
-
-        </div>
+      <div className="nav-wrap">
         <nav className="tab-list">
           {this.renderTabList()}
         </nav>
-      </header>
+      </div>
     );
   }
 }
