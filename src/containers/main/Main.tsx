@@ -19,26 +19,65 @@ interface MainProps {
 }
 
 export default class Main extends React.Component<MainProps, {}> {
-  _renderFirstSEction () {
+  _renderFirstSection () {
+    return <div className="first">
+      <img src={myImage} alt="my image"/>
+      <div>
+        <span>ФИО:</span><span>Кузьмичев Макар Александрович</span>
+      </div>
+      <div>
+        <span>Дата рождения:</span><span>31.08.92</span>
+      </div>
+      <div>
+        <span>Город:</span><span>Ижевск</span>
+      </div>
+      <div>
+        <span>Образование:</span><span>МФТИ(ГУ), бакалавр, прикладная математика и физика</span>
+      </div>
+      <div>
+        <span>Опыт работы:</span>
+        <span>
+          2012-2013: Москва, БоиФармКластер, МФТИ, младший научный сотрудник <br/>
+          2013-2016: Ижевск, МБОУ СОШ №58, учитель <br/>
+          2015-2016: Ижевск, Competentum, разработчик алгоритмов по математике <br/>
+          2016-н.в.: Ижевск, Competentum, младший программист <br/>
+        </span>
+      </div>
+      <div>
+        <span>Технологии:</span><span>HTML, CSS, JS (ES5, ES6), SVG, Canvas, jQuery, JSXGraph, React, Redux, Angular2, Webpack, Git, Jira</span>
+      </div>
+      <div>
+        <span>О себе:</span><span>В настоящее время работаю в компании компетентум младшим программистом, занимаюсь Web-разработкой</span>
+      </div>
+    </div>;
+  }
+
+  _renderSecondSection () {
+    const images = [space1, space2, space3, space4, space5];
 
     return <div>
-      <img src={myImage} alt="my image"/>
-      <p>Тема: «Плюралистический гуманизм в XXI веке»</p>
-      Политическое учение Аристотеля, несмотря на внешние воздействия, существенно сохраняет кризис легитимности. По сути,  политическая коммуникация неоднозначна. Политическая элита теоретически представляет собой классический континентально-европейский тип политической культуры. Капиталистическое мировое общество ограничивает христианско-демократический национализм.
-      Демократия участия неизбежна. Глобализация обретает гносеологический доиндустриальный тип политической культуры. Понятие тоталитаризма постоянно. Согласно теории Э.Тоффлера ("Шок будущего"),  харизматическое лидерство сохраняет англо-американский тип политической культуры. Согласно классификации М.Вебера,  феномен толпы практически интегрирует марксизм. Гуманизм, как правило, доказывает онтологический коммунизм.
-      Феномен толпы неоднозначен. Капиталистическое мировое общество предсказуемо. Англо-американский тип политической культуры определяет бихевиоризм. Управление политическими конфликтами, короче говоря, категорически ограничивает авторитаризм. Структура политической науки практически символизирует марксизм
+      <div id="carousel-main">
+        <Carousel images={images}/>
+      </div>
+    </div>;
+  }
+
+  _renderThirdSection () {
+    return <div>
+      <p>Связаться со мной можно через мессенджеры или с помощью формы ниже:</p>
+      <form action="">
+        <input className="form__input" type="text" name="name" placeholder="Имя"/>
+        <input className="form__input" type="email" name="email" placeholder="Email"/>
+        <textarea className="form__input form__message" name="text" placeholder="Ваше сообщение"/>
+        <input className="form__submit" type="submit" value="Отправить"/>
+      </form>
     </div>;
   }
 
   _renderSections () {
-    const images = [space1, space2, space3, space4, space5];
-
     return constants.num.map((item, i) => {
       return <Wrapper key={item} type="default" ident={item} toTopBtn={true} header={constants.headers[i]}>
-        { i !== 1 ? this._renderFirstSEction()
-        : <div id="carousel-main">
-          <Carousel images={images}/>
-        </div>}
+        {i === 0 ? this._renderFirstSection() : i === 1 ? this._renderSecondSection() : this._renderThirdSection()}
       </Wrapper>
     });
   }
