@@ -27,6 +27,23 @@ const scrollFunc = (start: number, end: number, direction?: number) => {
   requestAnimationFrame(scroll);
 };
 
+const toJSON = (form: any) => {
+  const obj = {};
+  const elements = form.querySelectorAll('input, select, textarea');
+  
+  for (let i = 0; i < elements.length; ++i) {
+    const element = elements[i];
+    const name = element.name;
+    const value = element.value;
+    if (name) {
+      obj[ name ] = value;
+    }
+  }
+  
+  return JSON.stringify(obj);
+};
+
 export {
-  scrollFunc
+  scrollFunc,
+  toJSON
 };
