@@ -1,3 +1,4 @@
+@import "../../styles/variables";
 main {
   display: flex;
   flex-direction: column;
@@ -29,6 +30,32 @@ main {
           }
 
           flex: 3;
+        }
+      }
+    }
+
+    .connect-with-me {
+      & > div {
+        .flex();
+
+        form {
+          & > * {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+          }
+
+          input, textarea {
+            margin: 15px;
+            width: 300px;
+            height: auto;
+          }
+
+          textarea {
+            border-radius: 5px;
+            resize: none;
+            height: 150px;
+          }
         }
       }
     }

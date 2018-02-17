@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import Wrapper from '../../components/Wrapper/Wrapper';
 import Carousel from '../../components/Carousel/Carousel';
+import Button from '../../components/button/Button';
 
 import * as constants from '../../utils/constants';
 
@@ -63,14 +64,24 @@ export default class Main extends React.Component<MainProps, {}> {
   }
 
   _renderThirdSection () {
-    return <div>
+    return <div className="connect-with-me">
       <p>Связаться со мной можно через мессенджеры или с помощью формы ниже:</p>
-      <form action="">
-        <input className="form__input" type="text" name="name" placeholder="Имя"/>
-        <input className="form__input" type="email" name="email" placeholder="Email"/>
-        <textarea className="form__input form__message" name="text" placeholder="Ваше сообщение"/>
-        <input className="form__submit" type="submit" value="Отправить"/>
-      </form>
+      <div>
+        <form action="/telegram" method="POST">
+          <div>
+            <label htmlFor="form__input">Имя</label><input id="form__input" type="text" name="name" placeholder="Имя"/>
+          </div>
+          <div>
+            <label htmlFor="form__input">Email</label><input id="form__input" type="email" name="email" placeholder="Email"/>
+          </div>
+          <div>
+            <textarea id="form__input form__message" name="text" placeholder="Ваше сообщение"/>
+          </div>
+          <div>
+            <Button >Отправить</Button>
+          </div>
+        </form>
+      </div>
     </div>;
   }
 
