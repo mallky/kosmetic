@@ -45,6 +45,8 @@ class Page extends React.Component<PageProps, {}> {
 
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(json);
+
+    form.reset();
   }
 
   onScroll(e: any): void {
