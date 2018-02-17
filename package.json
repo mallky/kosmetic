@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.tsx",
   "scripts": {
-    "start": "better-npm-run dev",
+    "start": "node server.js",
     "build": "better-npm-run build"
   },
   "betterScripts": {
